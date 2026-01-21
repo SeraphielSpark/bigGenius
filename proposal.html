@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BidGenius AI | Professional Proposal Generator</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* GLOBAL BOLD & RESET */
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      font-weight: 700 !important;
+    }
+
+    body { 
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER - Premium Design */
+    header { 
+      background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+      color: #fff; 
+      padding: 18px 40px;
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
+      border-bottom: 4px solid #ffbd2e;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header .logo { 
+      font-size: 28px; 
+      letter-spacing: 1px; 
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    header .logo i { color: #ffbd2e; }
+    .tagline { 
+      font-size: 12px; 
+      color: #ccc; 
+      margin-left: 5px;
+      font-weight: 500;
+    }
+    header .nav { display: flex; gap: 30px; align-items: center; }
+    header .nav a { 
+      color: #fff; 
+      text-decoration: none; 
+      font-size: 14px; 
+      text-transform: uppercase; 
+      letter-spacing: 0.5px;
+      padding: 8px 0;
+      position: relative;
+      transition: color 0.3s;
+    }
+    header .nav a:hover { color: #ffbd2e; }
+    header .nav a:hover::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #ffbd2e;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .user-profile {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #ffbd2e;
+    }
+
+    /* SIDEBAR & MAIN LAYOUT */
+    .main-container {
+      display: flex;
+      flex: 1;
+      min-height: calc(100vh - 180px);
+    }
+
+    /* SIDEBAR - Premium Navigation */
+    .sidebar {
+      width: 260px;
+      background: #fff;
+      border-right: 2px solid #e5e7eb;
+      padding: 30px 0;
+      box-shadow: 2px 0 15px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-section {
+      padding: 0 25px;
+      margin-bottom: 35px;
+    }
+    .sidebar-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #6b7280;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sidebar-menu {
+      list-style: none;
+    }
+    .sidebar-menu li {
+      margin-bottom: 10px;
+    }
+    .sidebar-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 15px;
+      color: #374151;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+    .sidebar-menu a:hover {
+      background: #f3f4f6;
+      color: #000;
+    }
+    .sidebar-menu a.active {
+      background: #ffbd2e;
+      color: #000;
+    }
+    .platform-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .badge {
+      background: #f3f4f6;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .badge.upwork { background: #14a800; color: white; }
+    .badge.fiverr { background: #1dbf73; color: white; }
+    .badge.linkedin { background: #0a66c2; color: white; }
+    .stats {
+      margin-top: 20px;
+    }
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    /* MAIN CONTENT AREA */
+    .content-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 30px 40px;
+    }
+
+    /* DASHBOARD HEADER */
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .dashboard-title h1 {
+      font-size: 32px;
+      margin-bottom: 5px;
+      background: linear-gradient(135deg, #000 0%, #333 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .dashboard-title p {
+      color: #6b7280;
+      font-size: 15px;
+      max-width: 600px;
+    }
+    .dashboard-actions {
+      display: flex;
+      gap: 15px;
+    }
+    .btn-icon {
+      background: #fff;
+      border: 2px solid #e5e7eb;
+      padding: 12px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+    .btn-icon:hover {
+      border-color: #000;
+      background: #f9fafb;
+    }
+
+    /* MAIN LAYOUT - SPLIT SCREEN */
+    .workspace {
+      display: flex;
+      flex: 1;
+      gap: 30px;
+      min-height: 600px;
+    }
+
+    /* LEFT SIDE - INPUTS */
+    .input-panel {
+      width: 45%;
+      background: #fff;
+      padding: 35px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      border: 2px solid #e5e7eb;
+      overflow-y: auto;
+    }
+
+    /* RIGHT SIDE - RESPONSE CHAT STREAM */
+    .response-panel {
+      width: 55%;
+      background: #fff;
+      padding: 35px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      border: 2px solid #e5e7eb;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    /* TITLES */
+    h1 { font-size: 28px; margin-bottom: 10px; }
+    h2 { 
+      font-size: 20px; 
+      margin-bottom: 20px; 
+      padding-bottom: 10px;
+      border-bottom: 3px solid #ffbd2e;
+    }
+    .section-subtitle {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    /* FORMS - Premium Design */
+    .form-group { margin-bottom: 25px; }
+    .form-group label { 
+      display: flex; 
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px; 
+      font-size: 14px; 
+      color: #374151; 
+    }
+    .form-group input, 
+    .form-group textarea, 
+    .form-group select {
+      width: 100%; 
+      padding: 16px; 
+      border-radius: 10px; 
+      border: 2px solid #e5e7eb; 
+      font-size: 15px;
+      background: #fff;
+      color: #000;
+      transition: all 0.3s;
+    }
+    .form-group input:focus, 
+    .form-group textarea:focus, 
+    .form-group select:focus {
+      outline: none;
+      border-color: #000;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+    .form-group textarea { 
+      resize: vertical; 
+      min-height: 150px;
+      line-height: 1.5;
+      font-family: 'Courier New', monospace;
+      font-weight: 500;
+    }
+
+    /* BUTTONS - Premium Design */
+    .btn-row { 
+      display: flex; 
+      gap: 15px; 
+      flex-wrap: wrap; 
+      margin-top: 25px;
+    }
+    
+    button {
+      padding: 16px 28px;
+      border-radius: 10px;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 700;
+    }
+    button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+    .btn-primary { 
+      background: linear-gradient(135deg, #000 0%, #333 100%); 
+      color: #fff; 
+      border: none; 
+      flex: 1; 
+    }
+    .btn-primary:hover { 
+      background: linear-gradient(135deg, #333 0%, #000 100%); 
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    .btn-test { 
+      background: #fff; 
+      color: #000; 
+      border: 2px solid #ffbd2e;
+    }
+    .btn-test:hover {
+      background: #ffbd2e;
+    }
+
+    /* CHAT BUBBLES - Premium Design */
+    .response-bubble {
+      background: #fff;
+      border: 2px solid #e5e7eb;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      animation: fadeIn 0.3s ease;
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+    .response-bubble:hover {
+      border-color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .bubble-header {
+      background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+      color: #374151;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    .bubble-content {
+      padding: 25px;
+      background: #f9fafb;
+      color: #1f2937;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+    .bubble-content pre { 
+      margin: 0; 
+      white-space: pre-wrap; 
+      font-family: 'Courier New', monospace !important;
+      font-weight: 500;
+    }
+
+    .bubble-actions {
+      padding: 15px;
+      background: #fff;
+      border-top: 2px solid #e5e7eb;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .btn-sm { 
+      padding: 10px 18px; 
+      font-size: 13px; 
+      border: 2px solid #e5e7eb; 
+      background: #fff; 
+      color: #374151; 
+      text-decoration: none;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s;
+    }
+    .btn-sm:hover { 
+      background: #000; 
+      color: #fff;
+      border-color: #000;
+    }
+    .btn-edit { 
+      background: #ffbd2e; 
+      border-color: #ffbd2e;
+      color: #000;
+    }
+    .btn-edit:hover {
+      background: #000;
+      color: #ffbd2e;
+      border-color: #000;
+    }
+
+    /* EDIT INTERFACE (Bottom) - Premium Design */
+    .edit-interface {
+      position: fixed;
+      bottom: -350px;
+      left: 0; 
+      right: 0;
+      background: #fff;
+      border-top: 4px solid #000;
+      padding: 25px;
+      transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 1001;
+      box-shadow: 0 -20px 50px rgba(0,0,0,0.15);
+    }
+    .edit-interface.active { bottom: 0; }
+
+    .edit-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .context-tag {
+      background: #fef3c7;
+      border-left: 5px solid #ffbd2e;
+      padding: 15px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #92400e;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 8px;
+    }
+
+    .edit-input-group { 
+      display: flex; 
+      gap: 15px;
+    }
+    .edit-input-group input {
+      flex: 1;
+      padding: 18px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 15px;
+    }
+    .edit-input-group input:focus {
+      outline: none;
+      border-color: #000;
+    }
+
+    /* TRACKER SECTION */
+    .tracker-section {
+      background: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      margin-top: 40px;
+      border: 2px solid #e5e7eb;
+    }
+    .proposal-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 25px;
+      margin-top: 25px;
+    }
+    .proposal-item {
+      border: 2px solid #e5e7eb;
+      padding: 25px;
+      border-radius: 12px;
+      background: #fff;
+      transition: all 0.3s;
+    }
+    .proposal-item:hover {
+      border-color: #000;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    .proposal-item h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .status { 
+      background: #000; 
+      color: #fff; 
+      padding: 6px 12px; 
+      border-radius: 20px; 
+      font-size: 11px; 
+    }
+    .status.sent { background: #10b981; }
+    .status.draft { background: #f59e0b; }
+    .status.won { background: #3b82f6; }
+    .proposal-item p {
+      color: #6b7280;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+    .proposal-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #9ca3af;
+      padding-top: 15px;
+      border-top: 1px solid #f3f4f6;
+    }
+
+    /* FOOTER - Premium Design */
+    footer {
+      background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+      color: #fff;
+      padding: 40px;
+      margin-top: 60px;
+      border-top: 4px solid #ffbd2e;
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+    .footer-section h3 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #ffbd2e;
+    }
+    .footer-section ul {
+      list-style: none;
+    }
+    .footer-section ul li {
+      margin-bottom: 12px;
+    }
+    .footer-section a {
+      color: #d1d5db;
+      text-decoration: none;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-section a:hover {
+      color: #ffbd2e;
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      margin-top: 30px;
+      border-top: 1px solid #333;
+      color: #9ca3af;
+      font-size: 14px;
+    }
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    .social-links a:hover {
+      background: #ffbd2e;
+      transform: translateY(-3px);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn { 
+      from { opacity: 0; transform: translateY(20px); } 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width: 1200px) {
+      .main-container { flex-direction: column; }
+      .sidebar { 
+        width: 100%; 
+        border-right: none; 
+        border-bottom: 2px solid #e5e7eb;
+        padding: 20px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 30px;
+      }
+      .sidebar-section { margin-bottom: 0; }
+    }
+
+    @media (max-width: 900px) {
+      header { padding: 15px 25px; }
+      .content-area { padding: 25px; }
+      .workspace { 
+        flex-direction: column; 
+        gap: 25px;
+      }
+      .input-panel, .response-panel { 
+        width: 100%; 
+        padding: 25px;
+      }
+      .response-panel { max-height: 500px; }
+      .dashboard-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+      .footer-content { grid-template-columns: 1fr; gap: 30px; }
+    }
+
+    @media (max-width: 600px) {
+      header .nav { display: none; }
+      .header-actions { gap: 10px; }
+      .btn-row { flex-direction: column; }
+      .bubble-actions { flex-direction: column; align-items: stretch; }
+      .btn-sm { justify-content: center; }
+      .edit-input-group { flex-direction: column; }
+      .proposal-list { grid-template-columns: 1fr; }
+    }
+
+    /* UTILITY CLASSES */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #9ca3af;
+    }
+    .empty-state i {
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: #e5e7eb;
+    }
+    .platform-icon {
+      color: #ffbd2e;
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #000 0%, #ffbd2e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <i class="fas fa-robot"></i>
+    <span>BidGenius AI</span>
+    <span class="tagline">Professional Proposal Automation</span>
+  </div>
+  <nav class="nav">
+    <a href="#generate"><i class="fas fa-bolt"></i> Generate</a>
+    <a href="#tracker"><i class="fas fa-chart-line"></i> Tracker</a>
+    <a href="#templates"><i class="fas fa-layer-group"></i> Templates</a>
+    <a href="#analytics"><i class="fas fa-chart-pie"></i> Analytics</a>
+  </nav>
+  <div class="header-actions">
+    <button class="btn-icon"><i class="fas fa-bell"></i></button>
+    <div class="user-profile">
+      <i class="fas fa-user"></i>
+    </div>
+  </div>
+</header>
+
+<div class="main-container">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title"><i class="fas fa-th-large"></i> Dashboard</div>
+      <ul class="sidebar-menu">
+        <li><a href="#generate" class="active"><i class="fas fa-plus-circle"></i> Create New</a></li>
+        <li><a href="#templates"><i class="fas fa-file-alt"></i> My Templates</a></li>
+        <li><a href="#tracker"><i class="fas fa-chart-bar"></i> Proposal Tracker</a></li>
+        <li><a href="#analytics"><i class="fas fa-chart-pie"></i> Performance</a></li>
+      </ul>
+    </div>
+    
+    <div class="sidebar-section">
+      <div class="sidebar-title"><i class="fas fa-globe"></i> Supported Platforms</div>
+      <div class="platform-badges">
+        <div class="badge upwork"><i class="fab fa-upwork"></i> Upwork</div>
+        <div class="badge fiverr"><i class="fab fa-fonticons-fi"></i> Fiverr</div>
+        <div class="badge linkedin"><i class="fab fa-linkedin"></i> LinkedIn</div>
+        <div class="badge"><i class="fas fa-envelope"></i> Email</div>
+        <div class="badge"><i class="fas fa-code"></i> Custom</div>
+      </div>
+    </div>
+    
+    <div class="sidebar-section">
+      <div class="sidebar-title"><i class="fas fa-chart-line"></i> This Month</div>
+      <div class="stats">
+        <div class="stat-item">
+          <span>Proposals Generated</span>
+          <span>24</span>
+        </div>
+        <div class="stat-item">
+          <span>Success Rate</span>
+          <span>68%</span>
+        </div>
+        <div class="stat-item">
+          <span>Avg. Response Time</span>
+          <span>3.2h</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="content-area">
+    <div class="dashboard-header">
+      <div class="dashboard-title">
+        <h1>AI Proposal Generator</h1>
+        <p>Create winning proposals for Upwork, Fiverr, LinkedIn, and other platforms. Our AI analyzes job descriptions and crafts personalized bids that convert.</p>
+      </div>
+      <div class="dashboard-actions">
+        <button class="btn-icon"><i class="fas fa-history"></i> History</button>
+        <button class="btn-icon"><i class="fas fa-download"></i> Export</button>
+      </div>
+    </div>
+
+    <div class="workspace">
+      <div class="input-panel" id="generate">
+        <h2><i class="fas fa-edit platform-icon"></i> Proposal Details</h2>
+        <p class="section-subtitle">Fill in the job details. Our AI will analyze the requirements and generate a personalized, high-converting proposal.</p>
+
+        <div class="form-group">
+          <label><i class="fas fa-tv"></i> Platform</label>
+          <select id="proposalPlatform" onchange="toggleOtherPlatform()">
+            <option value="upwork">Upwork - Professional Network</option>
+            <option value="fiverr">Fiverr - Gig Marketplace</option>
+            <option value="linkedin">LinkedIn - Professional Network</option>
+            <option value="email">Direct Email</option>
+            <option value="other">Other Platform</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="otherPlatformGroup" style="display:none;">
+          <label><i class="fas fa-plus-circle"></i> Platform Name</label>
+          <input id="otherPlatformName" type="text" placeholder="e.g. Freelancer, Toptal, Guru">
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-briefcase"></i> Job Title</label>
+          <input id="jobTitle" type="text" placeholder="e.g. Senior AI Automation Developer">
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-align-left"></i> Job Description</label>
+          <textarea id="jobDescription" rows="8" placeholder="Paste the complete job description here..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-globe-americas"></i> Client Country</label>
+          <select id="clientCountry">
+            <option value="us">United States 🇺🇸</option>
+            <option value="uk">United Kingdom 🇬🇧</option>
+            <option value="germany">Germany 🇩🇪</option>
+            <option value="nigeria">Nigeria 🇳🇬</option>
+            <option value="others">Other Countries</option>
+          </select>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-test" onclick="fillTestData()">
+            <i class="fas fa-vial"></i> Test with Sample Data
+          </button>
+          <button class="btn-primary" onclick="generateProposal()">
+            <i class="fas fa-magic"></i> Generate Proposal
+          </button>
+        </div>
+      </div>
+
+      <div class="response-panel" id="chatStream">
+        <h2><i class="fas fa-stream platform-icon"></i> Proposal Stream</h2>
+        <p class="section-subtitle">Generated proposals will appear here. You can copy, save, or refine each version.</p>
+        
+        <div class="empty-state">
+          <i class="fas fa-comment-dots"></i>
+          <h3>No Proposals Yet</h3>
+          <p>Fill out the form and click "Generate Proposal" to create your first AI-powered bid.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRACKER SECTION -->
+    <div class="tracker-section" id="tracker">
+      <h2><i class="fas fa-chart-line platform-icon"></i> Proposal Tracker</h2>
+      <p class="section-subtitle">Track all your sent proposals and their status. Monitor what's working to improve your success rate.</p>
+      
+      <div class="proposal-list" id="proposalList">
+        <div class="proposal-item">
+          <h3>React Native Developer <span class="status sent">Sent</span></h3>
+          <p>Need an experienced mobile dev for a fintech app with real-time payments and biometric authentication...</p>
+          <div class="proposal-meta">
+            <span><i class="fas fa-tv"></i> Upwork</span>
+            <span><i class="fas fa-calendar"></i> 2 days ago</span>
+          </div>
+        </div>
+        <div class="proposal-item">
+          <h3>Full-Stack WordPress <span class="status won">Won</span></h3>
+          <p>Looking for a developer to build a custom WordPress theme with e-commerce integration and membership system...</p>
+          <div class="proposal-meta">
+            <span><i class="fas fa-fonticons-fi"></i> Fiverr</span>
+            <span><i class="fas fa-calendar"></i> 1 week ago</span>
+          </div>
+        </div>
+        <div class="proposal-item">
+          <h3>AI Chatbot Integration <span class="status draft">Draft</span></h3>
+          <p>Integrate ChatGPT API into existing customer service platform with custom training and analytics dashboard...</p>
+          <div class="proposal-meta">
+            <span><i class="fas fa-envelope"></i> Email</span>
+            <span><i class="fas fa-calendar"></i> Today</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT INTERFACE -->
+<div class="edit-interface" id="editInterface">
+  <div class="edit-container">
+    <div class="context-tag">
+      <span id="editingPreview"><i class="fas fa-edit"></i> Editing: Proposal #1 - "React Native Developer" for Upwork</span>
+      <span style="cursor:pointer; color:#ef4444; font-weight:900;" onclick="closeEditMode()">✕ CANCEL EDIT</span>
+    </div>
+
+    <label><i class="fas fa-sliders-h"></i> How should we refine this proposal?</label>
+    <div class="edit-input-group">
+      <input type="text" id="userEditPrompt" placeholder="e.g. Make it more enthusiastic, mention my 5 years of React experience, include a portfolio link...">
+      <button class="btn-primary" style="width: auto; padding: 18px 30px;" onclick="submitEdit()">
+        <i class="fas fa-magic"></i> Refine Proposal
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>BidGenius AI</h3>
+      <p>Professional proposal automation for freelancers and agencies. Win more clients with AI-powered bidding.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-product-hunt"></i></a>
+      </div>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Platforms</h3>
+      <ul>
+        <li><a href="#"><i class="fab fa-upwork"></i> Upwork Proposals</a></li>
+        <li><a href="#"><i class="fab fa-fonticons-fi"></i> Fiverr Gigs</a></li>
+        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn Pitches</a></li>
+        <li><a href="#"><i class="fas fa-envelope"></i> Email Outreach</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="#"><i class="fas fa-book"></i> Documentation</a></li>
+        <li><a href="#"><i class="fas fa-video"></i> Tutorials</a></li>
+        <li><a href="#"><i class="fas fa-file-alt"></i> Templates</a></li>
+        <li><a href="#"><i class="fas fa-chart-line"></i> Analytics</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+        <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+        <li><a href="#"><i class="fas fa-shield-alt"></i> Privacy</a></li>
+        <li><a href="#"><i class="fas fa-file-contract"></i> Terms</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="copyright">
+    © 2023 BidGenius AI. All rights reserved. Professional proposal automation for modern freelancers.
+  </div>
+</footer>
+
+<!-- EXISTING JAVASCRIPT (UNCHANGED) -->
+<script>
+  // WEBHOOK CONFIG
+  const proxyUrl = "https://YOUR_PROXY_SERVER_URL"; 
+  const n8nWebhookGenerate = "https://loveofn8n.app.n8n.cloud/webhook/generate";
+  const n8nWebhookEdit = "https://loveofn8n.app.n8n.cloud/webhook/edit_generate";
+  const n8nWebhookSave = "/n8n/save";
+  const n8nWebhookTracker = "/n8n/tracker";
+  const n8nWebhookFollowUp = "/n8n/followup";
+
+  let proposalHistory = [];
+  let currentEditingIndex = -1;
+
+  // --- CLEANER FUNCTION (Removes unwanted placeholders) ---
+  function cleanProposalText(text) {
+    if(!text) return "";
+    return text
+      .replace(/\*\*, and \[Client Name\]/gi, "") // The specific request
+      .replace(/, and \[Client Name\]/gi, "")      // Variations
+      .replace(/\[Client Name\]/gi, "Client")      // Just in case
+      .replace(/\**/g, "")                       // Newline chars
+      .replace(/\-/g, "")
+      .trim();
+  }
+
+  // --- 1. GENERATE ---
+  async function generateProposal() {
+    const title = document.getElementById("jobTitle").value;
+    const desc = document.getElementById("jobDescription").value;
+    const country = document.getElementById("clientCountry").value;
+    const platform = document.getElementById("proposalPlatform").value;
+    const otherPlatformName = document.getElementById("otherPlatformName").value;
+    const platformName = platform === "other" ? otherPlatformName : platform;
+
+    if(!desc) return alert("Please enter a job description.");
+
+    addLoadingBubble();
+
+    try {
+      const res = await fetch(n8nWebhookGenerate, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title, desc, country, platform: platformName })
+      });
+
+      const data = await res.json();
+      removeLoadingBubble();
+      
+      // Clean the text before showing
+      const cleanText = cleanProposalText(data.proposal);
+      addResponseBubble(cleanText, "Initial Proposal");
+
+    } catch (e) {
+      removeLoadingBubble();
+      alert("Error generating proposal. Check console.");
+      console.error(e);
+    }
+  }
+
+  // --- 2. EDIT / REFINE ---
+  function triggerEdit(index) {
+    currentEditingIndex = index;
+    const proposalText = proposalHistory[index];
+    const ui = document.getElementById('editInterface');
+    const preview = document.getElementById('editingPreview');
+    preview.innerText = `Editing: Proposal #${index + 1} - "${proposalText.substring(0, 40)}..."`;
+    ui.classList.add('active');
+    document.getElementById('userEditPrompt').focus();
+  }
+
+  function closeEditMode() {
+    document.getElementById('editInterface').classList.remove('active');
+    currentEditingIndex = -1;
+    document.getElementById('userEditPrompt').value = "";
+  }
+
+  async function submitEdit() {
+    if (currentEditingIndex === -1) return;
+    const userPrompt = document.getElementById('userEditPrompt').value;
+    const proposalContent = proposalHistory[currentEditingIndex];
+
+    if (!userPrompt) return alert("Please type an instruction.");
+
+    closeEditMode();
+    addLoadingBubble();
+
+    try {
+      const res = await fetch(n8nWebhookEdit, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          proposal: proposalContent,
+          user_edit_prompt: userPrompt
+        })
+      });
+
+      const data = await res.json();
+      removeLoadingBubble();
+      
+      // Clean the text before showing
+      const cleanText = cleanProposalText(data.proposal || data.output);
+      addResponseBubble(cleanText, `Edit: "${userPrompt}"`);
+
+    } catch (e) {
+      removeLoadingBubble();
+      alert("Error connecting to Edit Webhook.");
+    }
+  }
+
+  // --- 3. UI HELPERS ---
+  function addResponseBubble(text, label) {
+    const chat = document.getElementById('chatStream');
+    // Remove empty state if present
+    const emptyState = chat.querySelector('.empty-state');
+    if (emptyState) emptyState.remove();
+
+    const index = proposalHistory.length;
+    proposalHistory.push(text);
+
+    const div = document.createElement('div');
+    div.className = 'response-bubble';
+    div.innerHTML = `
+      <div class="bubble-header">
+        <span><i class="fas fa-file-alt"></i> ${label}</span>
+        <span>#${index + 1} • ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+      </div>
+      <div class="bubble-content">
+        <pre><code class="language-markdown">${text}</code></pre>
+      </div>
+      <div class="bubble-actions">
+        <button class="btn-sm" onclick="copyText(${index})"><i class="fas fa-copy"></i> Copy</button>
+        <button class="btn-sm" onclick="saveSpecificProposal(${index})"><i class="fas fa-save"></i> Save to Tracker</button>
+        <button class="btn-sm btn-edit" onclick="triggerEdit(${index})"><i class="fas fa-edit"></i> Refine This</button>
+      </div>
+    `;
+
+    chat.prepend(div); // Add to top instead of bottom
+    hljs.highlightElement(div.querySelector('code'));
+    div.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function addLoadingBubble() {
+    const chat = document.getElementById('chatStream');
+    const emptyState = chat.querySelector('.empty-state');
+    if (emptyState) emptyState.remove();
+    
+    const div = document.createElement('div');
+    div.id = 'loadingIndicator';
+    div.className = 'response-bubble';
+    div.innerHTML = `
+      <div class="bubble-header">
+        <span><i class="fas fa-spinner fa-spin"></i> AI is Crafting Your Proposal</span>
+      </div>
+      <div style="padding: 30px; text-align: center; color: #6b7280;">
+        <i class="fas fa-robot fa-2x" style="margin-bottom: 15px; color: #e5e7eb;"></i>
+        <p>Analyzing job description and generating personalized proposal...</p>
+      </div>
+    `;
+    chat.prepend(div);
+    div.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function removeLoadingBubble() {
+    const el = document.getElementById('loadingIndicator');
+    if (el) el.remove();
+  }
+
+  function copyText(index) {
+    navigator.clipboard.writeText(proposalHistory[index]).then(() => {
+      // Show a subtle confirmation instead of alert
+      const buttons = document.querySelectorAll('.btn-sm');
+      buttons.forEach(btn => {
+        if (btn.innerHTML.includes('fa-copy')) {
+          const original = btn.innerHTML;
+          btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(() => { btn.innerHTML = original; }, 2000);
+        }
+      });
+    });
+  }
+
+  // --- 4. TRACKER & FOLLOW UP ---
+  async function saveSpecificProposal(index) {
+    const content = proposalHistory[index];
+    const title = document.getElementById("jobTitle").value;
+    const desc = document.getElementById("jobDescription").value;
+    const country = document.getElementById("clientCountry").value;
+    const platform = document.getElementById("proposalPlatform").value;
+
+    await fetch(proxyUrl + n8nWebhookSave, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, desc, country, platform, proposal: content })
+    });
+
+    // Update UI feedback
+    const buttons = document.querySelectorAll('.btn-sm');
+    buttons.forEach(btn => {
+      if (btn.innerHTML.includes('fa-save')) {
+        const original = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Saved!';
+        setTimeout(() => { btn.innerHTML = original; }, 2000);
+      }
+    });
+    
+    loadTracker();
+  }
+
+  async function loadTracker() {
+    try {
+        const res = await fetch(proxyUrl + n8nWebhookTracker);
+        const data = await res.json();
+        const list = document.getElementById("proposalList");
+        list.innerHTML = "";
+        data.proposals.forEach(p => {
+          list.innerHTML += `
+            <div class="proposal-item">
+              <h3>${p.title} <span class="status ${p.status || 'draft'}">${p.status || 'Draft'}</span></h3>
+              <p>${p.proposal.slice(0, 100)}...</p>
+              <div class="proposal-meta">
+                <span><i class="fas fa-tv"></i> ${p.platform}</span>
+                <span><i class="fas fa-calendar"></i> ${new Date().toLocaleDateString()}</span>
+              </div>
+            </div>`;
+        });
+    } catch(e) { 
+      console.log("Tracker offline / Mock mode - Showing sample data");
+    }
+  }
+
+  async function sendFollowUp() {
+    const message = document.getElementById("followUpMessage").value;
+    await fetch(proxyUrl + n8nWebhookFollowUp, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message })
+    });
+    alert("Follow-up sent.");
+    document.getElementById("followUpMessage").value = "";
+  }
+
+  function toggleOtherPlatform() {
+    const platform = document.getElementById("proposalPlatform").value;
+    document.getElementById("otherPlatformGroup").style.display = platform === "other" ? "block" : "none";
+  }
+
+  function fillTestData() {
+    document.getElementById("jobTitle").value = "React Native Developer for Fintech App";
+    document.getElementById("jobDescription").value = "Looking for an experienced React Native developer to build a fintech mobile application with real-time payments, biometric authentication, and secure transaction handling. The app should integrate with banking APIs and provide a seamless user experience. Experience with React Native, Redux, Firebase, and payment gateways is required. Please include your portfolio of similar projects and estimated timeline.";
+    document.getElementById("clientCountry").value = "us";
+  }
+
+  // Initialize
+  document.addEventListener('DOMContentLoaded', function() {
+    loadTracker();
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
